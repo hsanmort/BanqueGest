@@ -1,0 +1,76 @@
+<div class="container spacer" ng-controller="EmpController" >
+<h2>Liste des Employes </h2>
+<form role="form" ng-submit="Ajouter()">
+		
+		<div class="input-group">
+			
+			<div align = "right">
+				<input  type="text"   name="nomEmploye" ng-model="nomEmploye" >
+			</div>
+			
+			<span class="input-group-btn">
+				<input value="Ajouter" type="submit" class="btn btn-default" id="btn-todo">
+			</span>
+		</div>
+</form>
+
+
+</div>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modifier Employe</h4>
+        </div>
+        <form role="form"  ng-submit="Enregi()">
+        <div class="modal-body">
+          
+          
+          <label>Nom Employe:</label> 
+              <input type="text"  name="nomEmploye" ng-model="nomEmploye">  
+                 
+          
+        </div>
+	        <div class="modal-footer">
+	        <input value="Save" type="submit"  id="btn-todo">
+	        </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+
+<div class="container spacer">
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Numéro Employe:</th><th>Nom Employe</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="e in employes">
+			<td>{{e.codeEmploye}}</td>
+			<td>{{e.nomEmploye }}</td>
+			
+			<td>
+			<a ng-click="supprimer(e)"  >Supprimer  </a>
+			<a ng-click="Modifier(e)" data-toggle="modal" data-target="#myModal">Modifier</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="container">
+	<ul class="nav nav-pills">
+	<li ng-class="{active:$index==pageCourante}"
+	class="clickable" ng-repeat="p in pages track by $index">
+	<a ng-click="gotoPage($index)">{{$index}}</a>
+	</li>
+	</ul>
+</div>
